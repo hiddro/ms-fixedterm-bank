@@ -52,4 +52,32 @@ public class FixedTermAccountHandler {
                         .switchIfEmpty(ServerResponse.badRequest().build()));
     }
 
+    public Mono<ServerResponse> updateFixedTermAccound(ServerRequest request){
+
+        Mono<FixedTermAccount> fixedTermAccountMono = request.bodyToMono(FixedTermAccount.class);
+
+        String id = request.pathVariable("id");
+
+        return fixedTermAccountMono.flatMap(fixedterm -> fixedTermService.updateFixedTerm(id, fixedterm))
+                .flatMap(c -> ServerResponse
+                        .ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromValue(c))
+                        .switchIfEmpty(ServerResponse.badRequest().build()));
+    }
+
+    public Mono<ServerResponse> deleteFixedTermAccound(ServerRequest request){
+
+        String id = request.pathVariable("id");
+
+        Mono<FixedTermAccount> fixedTerm = fixedTermService.findById(id);
+
+        return fixedTerm.flatMap(fixedt -> fixedTermService.deleteFixedTerm(fixedt.getId()))
+                .flatMap(c -> ServerResponse
+                        .ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromValue(c))
+                        .switchIfEmpty(ServerResponse.badRequest().build()));
+    }
+
 }

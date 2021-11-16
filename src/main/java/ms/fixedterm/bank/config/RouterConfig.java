@@ -18,9 +18,9 @@ public class RouterConfig {
         return route(GET("/getAll"), fixedTermAccountHandler::findAll)
                 .andRoute(GET("/getByIdCustomer/{customerIdentityNumber}"), fixedTermAccountHandler::findByCustomerIdentityNumber)
                 .andRoute(GET("/getByIdNumber/{accountNumber}"), fixedTermAccountHandler::findByAccountNumber)
-                .andRoute(POST("/create"), fixedTermAccountHandler::newFixedTermAccount);
-//                .andRoute(PUT("/update/{id}"), fixedTermAccountHandler::updateFixedTermAccound)
-//                .andRoute(DELETE("/delete/{id}"), fixedTermAccountHandler::deleteFixedTermAccound);
+                .andRoute(POST("/create"), fixedTermAccountHandler::newFixedTermAccount)
+                .andRoute(PUT("/update/{id}"), fixedTermAccountHandler::updateFixedTermAccound)
+                .andRoute(DELETE("/delete/{id}"), fixedTermAccountHandler::deleteFixedTermAccound);
 
     }
 }

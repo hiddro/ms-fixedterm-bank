@@ -26,11 +26,9 @@ public class FixedTermAccount {
     @Field(name = "typeOfAccount")
     private String typeOfAccount;
 
-    @NotNull
     @Field(name = "customerIdentityNumber")
     private String customerIdentityNumber;
 
-    @NotNull
     @Field(name = "accountNumber")
     private String accountNumber;
 
@@ -42,7 +40,6 @@ public class FixedTermAccount {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date createDate = new Date();
 
-    @NotNull
     @Field(name = "customer")
     private CustomerDTO customer;
 }

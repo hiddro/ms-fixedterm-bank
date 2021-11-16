@@ -13,4 +13,8 @@ public interface IFixedTermService extends ICrudService<FixedTermAccount, String
     Mono<FixedTermAccount> getByIdCustomer(String id);
 
     Mono<FixedTermAccount> getByIdNumber(String id);
+
+    Mono<FixedTermAccount> updateFixedTerm (String id, FixedTermAccount fixedTermAccount);
+
+    Mono<Void> deleteFixedTerm (String id);
 }
