@@ -28,6 +28,6 @@ public class CustomerServiceImpl implements ICustomerService {
                 .accept(MediaType.APPLICATION_JSON)
                 .exchangeToMono(customerResponse -> customerResponse.bodyToMono(Customer.class))
                 .doOnNext(c -> log.info("Customer Response: Customer={}"+ c.getName()))
-                .switchIfEmpty(Mono.just(Customer.builder().build()));
+                .switchIfEmpty(Mono.empty());
     }
 }

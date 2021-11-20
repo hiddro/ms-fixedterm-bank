@@ -26,18 +26,24 @@ public class FixedTermAccountHandler {
 
         String id = request.pathVariable("customerIdentityNumber");
 
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(fixedTermService.getByIdCustomer(id), FixedTermAccount.class)
-                .switchIfEmpty(ServerResponse.badRequest().build());
+        return fixedTermService.getByIdCustomer(id)
+                .flatMap(c -> ServerResponse
+                        .ok().
+                        contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromValue(c)))
+                .switchIfEmpty(ServerResponse.notFound().build());
     }
 
     public Mono<ServerResponse> findByAccountNumber(ServerRequest request){
 
         String id = request.pathVariable("accountNumber");
 
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(fixedTermService.getByIdNumber(id), FixedTermAccount.class)
-                .switchIfEmpty(ServerResponse.badRequest().build());
+        return fixedTermService.getByIdNumber(id)
+                .flatMap(c -> ServerResponse
+                        .ok().
+                        contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromValue(c)))
+                .switchIfEmpty(ServerResponse.notFound().build());
     }
 
     public Mono<ServerResponse> newFixedTermAccount(ServerRequest request){
@@ -48,8 +54,8 @@ public class FixedTermAccountHandler {
                 .flatMap(c -> ServerResponse
                         .ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromValue(c))
-                        .switchIfEmpty(ServerResponse.badRequest().build()));
+                        .body(BodyInserters.fromValue(c)))
+                .switchIfEmpty(ServerResponse.badRequest().build());
     }
 
     public Mono<ServerResponse> updateFixedTermAccound(ServerRequest request){
@@ -62,8 +68,8 @@ public class FixedTermAccountHandler {
                 .flatMap(c -> ServerResponse
                         .ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromValue(c))
-                        .switchIfEmpty(ServerResponse.badRequest().build()));
+                        .body(BodyInserters.fromValue(c)))
+                .switchIfEmpty(ServerResponse.badRequest().build());
     }
 
     public Mono<ServerResponse> deleteFixedTermAccound(ServerRequest request){
@@ -76,8 +82,8 @@ public class FixedTermAccountHandler {
                 .flatMap(c -> ServerResponse
                         .ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromValue(c))
-                        .switchIfEmpty(ServerResponse.badRequest().build()));
+                        .body(BodyInserters.fromValue(c)))
+                .switchIfEmpty(ServerResponse.badRequest().build());
     }
 
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import ms.fixedterm.bank.documents.dto.CustomerDTO;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -30,8 +31,8 @@ public class FixedTermAccount {
     private String customerIdentityNumber;
 
     @Field(name = "accountNumber")
+    @Indexed(unique=true)
     private String accountNumber;
-
 
     @Field(name = "amount")
     private double amount;

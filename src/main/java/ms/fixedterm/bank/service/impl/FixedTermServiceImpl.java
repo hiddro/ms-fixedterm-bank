@@ -66,16 +66,6 @@ public class FixedTermServiceImpl implements IFixedTermService {
 
             return fixedTermAccountRepository.save(fixedTermAccount);
         });
-//        return getCustomer(fixedTermAccount.getCustomerIdentityNumber())
-//                .flatMap(customerd -> {
-//                    fixedTermAccount.setTypeOfAccount("FIXEDTERM_ACCOUNT");
-//                    fixedTermAccount.setAmount(0.0);
-//                    fixedTermAccount.setCustomer(CustomerDTO.builder().name(customerd.getName())
-//                            .code(customerd.getCustomerType().getCode())
-//                            .customerIdentityNumber(customerd.getCustomerIdentityNumber()).build());
-//
-//                    return fixedTermAccountRepository.save(fixedTermAccount);
-//                });
     }
 
     @Override
